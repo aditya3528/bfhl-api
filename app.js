@@ -8,8 +8,37 @@ app.use(cors());
 // Root route
 app.get('/', (req, res) => {
   res.send(`
-    <h1>BFHL API</h1>
-    <p>Send a POST to <code>/bfhl</code> with JSON body <code>{"data": [...]}</code></p>
+      <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <title>BFHL API Tester</title>
+    </head>
+    <body style="font-family: sans-serif; padding: 2rem;">
+      <h1>BFHL API Tester</h1>
+      <p>Enter a JSON array of mixed items and click “Send”:</p>
+      <textarea id="input" rows="4" cols="50">{"data":["a","1","334","4","R","$"]}</textarea><br><br>
+      <button onclick="callApi()">Send</button>
+      <h2>Response:</h2>
+      <pre id="output" style="background:#f0f0f0; padding:1rem;"></pre>
+      <script>
+        async function callApi() {
+          try {
+            const body = document.getElementById('input').value;
+            const res = await fetch('/bfhl', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body
+            });
+            const data = await res.json();
+            document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+          } catch (err) {
+            document.getElementById('output').textContent = 'Error: ' + err;
+          }
+        }
+      </script>
+    </body>
+    </html>
   `);
 });
 
