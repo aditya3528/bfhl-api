@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Root route
+
 app.get('/', (req, res) => {
   res.send(`
       <!DOCTYPE html>
@@ -42,11 +42,11 @@ app.get('/', (req, res) => {
   `);
 });
 
-// Middleware
+
 app.use(express.json());
 app.use(cors());
 
-// Helper function to check if a string is a number
+
 function isNumber(str) {
     return !isNaN(str) && !isNaN(parseFloat(str));
 }
@@ -56,17 +56,17 @@ function isAlpha(char) {
     return /^[a-zA-Z]$/.test(char);
 }
 
-// Helper function to check if a character is special character
+
 function isSpecialChar(char) {
     return !isAlpha(char) && !isNumber(char);
 }
 
-// Main POST route
+
 app.post('/bfhl', (req, res) => {
     try {
         const { data } = req.body;
         
-        // Validate input
+        
         if (!data || !Array.isArray(data)) {
             return res.status(400).json({
                 is_success: false,
@@ -80,13 +80,13 @@ app.post('/bfhl', (req, res) => {
         let alphabets = [];
         let specialCharacters = [];
         let sum = 0;
-        let alphabetChars = []; // For concatenation logic
+        let alphabetChars = []; 
 
-        // Process each item in the data array
+        
         data.forEach(item => {
             const str = String(item);
             
-            // Check if it's a number
+            
             if (isNumber(str)) {
                 const num = parseInt(str);
                 if (num % 2 === 0) {
@@ -99,10 +99,10 @@ app.post('/bfhl', (req, res) => {
             
             else if (str.split('').every(char => isAlpha(char))) {
                 alphabets.push(str.toUpperCase());
-                // Add each character to alphabetChars for concatenation
+                
                 str.split('').forEach(char => alphabetChars.push(char.toLowerCase()));
             }
-            // Otherwise, it's a special character
+            
             else {
                 specialCharacters.push(str);
             }
@@ -122,9 +122,9 @@ app.post('/bfhl', (req, res) => {
         
         const response = {
             is_success: true,
-            user_id: "Aditya_Pratap_Singh_22052003", // Replace with actual user details
-            email: "adityapratap.singh2022@vitstudent.ac.in", // Replace with actual email
-            roll_number: "22BEE0333", // Replace with actual roll number
+            user_id: "Aditya_Pratap_Singh_22052003", 
+            email: "adityapratap.singh2022@vitstudent.ac.in", 
+            roll_number: "22BEE0333", 
             odd_numbers: oddNumbers,
             even_numbers: evenNumbers,
             alphabets: alphabets,
@@ -151,7 +151,7 @@ app.get('/bfhl', (req, res) => {
     });
 });
 
-// Health check route
+
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'API is running' });
 });
