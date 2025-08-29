@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>BFHL API Tester</title>
+</head>
+<body>
+  <h1>BFHL API Tester</h1>
+  <textarea id="input" rows="4" cols="50">{"data":["a","1","334","4","R","$"]}</textarea><br>
+  <button onclick="callApi()">Send</button>
+  <pre id="output"></pre>
+
+  <script>
+    async function callApi() {
+      const input = document.getElementById('input').value;
+      const res = await fetch('https://bfhl-api.onrender.com/bfhl', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: input
+      });
+      const data = await res.json();
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
