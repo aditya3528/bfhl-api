@@ -2,6 +2,17 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
+app.use(express.json());
+app.use(cors());
+
+// Root route
+app.get('/', (req, res) => {
+  res.send(`
+    <h1>BFHL API</h1>
+    <p>Send a POST to <code>/bfhl</code> with JSON body <code>{"data": [...]}</code></p>
+  `);
+});
+
 // Middleware
 app.use(express.json());
 app.use(cors());
