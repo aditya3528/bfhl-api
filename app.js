@@ -51,7 +51,7 @@ function isNumber(str) {
     return !isNaN(str) && !isNaN(parseFloat(str));
 }
 
-// Helper function to check if a character is alphabetic
+
 function isAlpha(char) {
     return /^[a-zA-Z]$/.test(char);
 }
@@ -74,7 +74,7 @@ app.post('/bfhl', (req, res) => {
             });
         }
 
-        // Initialize arrays and variables
+        
         let oddNumbers = [];
         let evenNumbers = [];
         let alphabets = [];
@@ -96,7 +96,7 @@ app.post('/bfhl', (req, res) => {
                 }
                 sum += num;
             }
-            // Check if it contains only alphabetic characters
+            
             else if (str.split('').every(char => isAlpha(char))) {
                 alphabets.push(str.toUpperCase());
                 // Add each character to alphabetChars for concatenation
@@ -108,7 +108,7 @@ app.post('/bfhl', (req, res) => {
             }
         });
 
-        // Create concatenation string with alternating caps in reverse order
+        
         let concatString = '';
         alphabetChars.reverse();
         alphabetChars.forEach((char, index) => {
@@ -119,7 +119,7 @@ app.post('/bfhl', (req, res) => {
             }
         });
 
-        // Response object
+        
         const response = {
             is_success: true,
             user_id: "Aditya_Pratap_Singh_22052003", // Replace with actual user details
@@ -144,7 +144,7 @@ app.post('/bfhl', (req, res) => {
     }
 });
 
-// GET route for testing
+
 app.get('/bfhl', (req, res) => {
     res.status(200).json({
         operation_code: 1
