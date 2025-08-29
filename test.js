@@ -1,6 +1,6 @@
 const express = require('express');
 
-// Test data based on the examples from the PDF
+
 const testData = [
     {
         name: "Example A",
@@ -34,7 +34,7 @@ const testData = [
     }
 ];
 
-// Manual logic test function
+
 function testLogic() {
     console.log('🧪 Testing API Logic');
     console.log('====================\n');
@@ -70,7 +70,7 @@ function testLogic() {
             }
         });
         
-        // Create concatenation string
+        
         let concatString = '';
         alphabetChars.reverse();
         alphabetChars.forEach((char, idx) => {
@@ -94,5 +94,5 @@ function testLogic() {
     console.log('✅ All test cases verified! The logic matches the expected outputs.');
 }
 
-// Run the test
+
 testLogic();
